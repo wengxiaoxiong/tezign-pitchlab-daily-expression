@@ -1,4 +1,5 @@
 import React from 'react';
+import Image from 'next/image';
 import { ResultData } from '@/lib/types';
 import { QRCode, UserInfo } from './PosterComponents';
 
@@ -34,8 +35,8 @@ export const PosterCard: React.FC<PosterCardProps> = ({ data, styleId }) => {
     case 15:
       return (
         <div className={`${baseClass} bg-white flex flex-col`}>
-          <div className="h-1/3 overflow-hidden">
-            <img src={data.posterUrl} className="w-full h-full object-cover" alt="Poster" />
+          <div className="h-1/3 overflow-hidden relative">
+            <Image src={data.posterUrl} fill className="object-cover" alt="Poster" unoptimized />
           </div>
           <div className="flex-1 p-8 flex flex-col">
             <div className="flex-1 flex flex-col justify-center">
@@ -54,7 +55,7 @@ export const PosterCard: React.FC<PosterCardProps> = ({ data, styleId }) => {
     case 16:
       return (
         <div className={baseClass}>
-          <img src={data.posterUrl} className="absolute inset-0 w-full h-full object-cover" alt="Background" />
+          <Image src={data.posterUrl} fill className="object-cover" alt="Background" unoptimized />
           <div className="absolute inset-0 bg-black/70" />
           <div className="relative h-full p-10 flex flex-col">
             <p className="text-[8px] text-white/40 mb-10 tracking-widest">#{data.topicTitle}</p>
