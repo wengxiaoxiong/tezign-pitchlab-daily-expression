@@ -67,7 +67,7 @@ export async function getSpeechFeedback(audioBase64: string, topic: string): Pro
     }
   });
 
-  return JSON.parse(response.text);
+  return JSON.parse(response.text || '{}');
 }
 
 export async function generatePosterImage(sentence: string, topic: string): Promise<string> {
