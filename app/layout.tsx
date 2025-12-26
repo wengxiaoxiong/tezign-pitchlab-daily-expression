@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Inter, Noto_Serif_SC } from "next/font/google";
+import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
 
 const inter = Inter({
@@ -33,6 +34,7 @@ export default function RootLayout({
         className={`${inter.variable} ${notoSerifSC.variable} antialiased`}
       >
         {children}
+        <Analytics />
       </body>
     </html>
   );
