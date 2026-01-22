@@ -2,10 +2,12 @@
 
 import { GoogleGenAI, Type } from "@google/genai";
 import { Feedback, AuthorType } from "@/lib/types";
+import { setProxy } from "@/lib/proxy";
 
 const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY || '' });
 
 export async function getSpeechFeedback(audioBase64: string, topic: string): Promise<Feedback> {
+  await setProxy();
   const prompt = `
     You are an insightful impromptu speech critic and communication coach.
 
@@ -41,7 +43,7 @@ export async function getSpeechFeedback(audioBase64: string, topic: string): Pro
   `;
 
   const response = await ai.models.generateContent({
-    model: "gemini-2.0-flash-exp",
+    model: "gemini-3-flash-preview",
     contents: {
       parts: [
         { inlineData: { data: audioBase64, mimeType: 'audio/webm' } },
@@ -112,7 +114,7 @@ export async function generatePosterImage(sentence: string, topic: string): Prom
   const prompt = `A cinematic, atmospheric photography piece for the background of a quote card. Theme: "${topic}". Style: Minimalist, soft natural light, high quality, artistic. No text in the image. 3:4 aspect ratio.`;
 
   const response = await ai.models.generateContent({
-    model: 'gemini-2.0-flash-exp',
+    model: 'gemini-2.5-flash-image',
     contents: { parts: [{ text: prompt }] },
     config: { imageConfig: { aspectRatio: "3:4" } }
   });
