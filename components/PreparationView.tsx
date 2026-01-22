@@ -42,15 +42,15 @@ export const PreparationView: React.FC<PreparationViewProps> = ({ topic, onFinis
 
   return (
     <div className="h-screen bg-white p-8 flex flex-col animate-in fade-in duration-500 overflow-hidden">
-      <button onClick={onBack} className="self-start text-gray-400 mb-10 text-sm">取消</button>
+      <button onClick={onBack} className="self-start text-gray-400 mb-10 text-sm">Cancel</button>
       <div className="flex-1 space-y-10">
         <div>
-          <h4 className="text-[10px] font-bold uppercase tracking-[0.3em] text-gray-300 mb-3">当前话题</h4>
+          <h4 className="text-[10px] font-bold uppercase tracking-[0.3em] text-gray-300 mb-3">Current Topic</h4>
           <h2 className="text-2xl font-serif leading-snug">{topic.title}</h2>
         </div>
         <div className="space-y-6">
           <div className="flex justify-between items-end border-b pb-2 border-gray-100">
-            <span className="text-xs text-gray-300 uppercase tracking-widest font-bold">思考角度</span>
+            <span className="text-xs text-gray-300 uppercase tracking-widest font-bold">Perspective</span>
             <button
               onClick={handleNextHint}
               className={`text-gray-300 hover:text-black transition-all ${isShuffling ? 'rotate-180 opacity-50' : ''}`}
@@ -82,13 +82,13 @@ export const PreparationView: React.FC<PreparationViewProps> = ({ topic, onFinis
       <div className="space-y-6 pb-4">
         <div className="flex flex-col items-center">
           <span className="text-3xl font-light tracking-tighter mb-1">{timeLeft}s</span>
-          <span className="text-[10px] uppercase text-gray-300 tracking-[0.2em]">准备中</span>
+          <span className="text-[10px] uppercase text-gray-300 tracking-[0.2em]">Preparing</span>
         </div>
         <button
           onClick={onFinish}
           className="w-full bg-black text-white py-4 rounded-[1.2rem] font-bold text-sm tracking-wider hover:opacity-90 active:scale-[0.98] transition-all"
         >
-          我准备好了
+          I&apos;m Ready
         </button>
       </div>
     </div>
