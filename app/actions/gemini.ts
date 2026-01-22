@@ -16,6 +16,7 @@ export async function getSpeechFeedback(audioBase64: string, topic: string): Pro
     1. Comments:
        - Generate 2-5 "Coach" comments: Professional and insightful tone. Use communication frameworks like PREP (Point, Reason, Example, Point) or STAR where appropriate. Each coach should have a distinct specialty (e.g., Logic, Emotion, Body Language) in the context of the topic: "${topic}".
        - Generate 3 "Listener" comments: Focus on emotional resonance and personal impact.
+       - IMPORTANT: For each comment, provide a single character EMOJI for the "avatar" field that represents the author's personality or role.
 
     2. Golden Sentences:
        Please extract 3 [absolutely differentiated] golden sentences from the user's speech:

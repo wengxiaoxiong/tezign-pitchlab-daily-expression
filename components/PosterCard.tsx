@@ -40,7 +40,7 @@ export const PosterCard: React.FC<PosterCardProps> = ({ data, styleId }) => {
           </div>
           <div className="flex-1 p-8 flex flex-col">
             <div className="flex-1 flex flex-col justify-center">
-              <QuoteBlock text={data.feedback.goldenSentences[0]} thick={false} fontSize="text-2xl" />
+              <QuoteBlock text={data.feedback.goldenSentences[0]} thick={false} fontSize="text-lg" />
             </div>
             <div className="mt-auto flex justify-between items-center border-t border-gray-50 pt-6">
               <div className="flex flex-col gap-1">
@@ -60,7 +60,7 @@ export const PosterCard: React.FC<PosterCardProps> = ({ data, styleId }) => {
           <div className="relative h-full p-10 flex flex-col">
             <p className="text-[8px] text-white/40 mb-10 tracking-widest">#{data.topicTitle}</p>
             <div className="flex-1 flex flex-col justify-center">
-              <QuoteBlock text={data.feedback.goldenSentences[1]} dark thick={false} fontSize="text-2xl" />
+              <QuoteBlock text={data.feedback.goldenSentences[1]} dark thick={false} fontSize="text-lg" />
             </div>
             <div className="mt-auto flex justify-between items-end pt-10 border-t border-white/5">
               <UserInfo data={data} dark compact />
@@ -88,7 +88,7 @@ export const PosterCard: React.FC<PosterCardProps> = ({ data, styleId }) => {
 
           <div className="flex-1 flex flex-col justify-center items-start pt-10">
             <div className="relative w-full">
-              <p className="text-[26px] font-sans text-gray-800 font-bold leading-relaxed whitespace-pre-wrap">
+              <p className="text-[18px] font-sans text-gray-800 font-bold leading-relaxed whitespace-pre-wrap">
                 {data.feedback.goldenSentences[2]}
               </p>
             </div>
