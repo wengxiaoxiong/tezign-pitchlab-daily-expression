@@ -35,7 +35,7 @@ export const SpeechView: React.FC<SpeechViewProps> = ({ topic, onFinish }) => {
       };
       mediaRecorder.start();
     } catch (err) {
-      alert("请允许麦克风权限以开始录音");
+      alert("Please allow microphone access to start recording");
     }
   };
 
@@ -101,7 +101,7 @@ export const SpeechView: React.FC<SpeechViewProps> = ({ topic, onFinish }) => {
                   }`}
               >
                 <div className="flex justify-between items-start mb-4">
-                  <span className="text-[8px] font-bold uppercase tracking-[0.3em] text-white/40">思考角度</span>
+                  <span className="text-[8px] font-bold uppercase tracking-[0.3em] text-white/40">Perspective</span>
                   <div className="flex gap-1">
                     <div className="w-1 h-1 rounded-full bg-white/40" />
                     <div className="w-1 h-1 rounded-full bg-white/20" />
@@ -128,7 +128,7 @@ export const SpeechView: React.FC<SpeechViewProps> = ({ topic, onFinish }) => {
             onClick={stopRecording}
             className="w-full bg-white text-black py-4 rounded-[1.2rem] font-bold text-sm tracking-widest active:scale-[0.98] transition-all"
           >
-            完成表达
+            Finish Speaking
           </button>
         </div>
       </div>

@@ -7,27 +7,41 @@ const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY || '' });
 
 export async function getSpeechFeedback(audioBase64: string, topic: string): Promise<Feedback> {
   const prompt = `
-    你是一个极具洞察力的即兴演讲评论家和表达教练。
+    You are an insightful impromptu speech critic and communication coach.
 
-    请根据用户的演讲录音，生成 5 条像社交媒体评论区一样的反馈内容。
+    Please generate feedback based on the user's speech recording, including 5 social media-style comments, comprehensive diagnosis, and improvement directions.
 
-    1. 评论角色分配：
-       - 生成 2-5 条"表达教练 (COACH)"评论：语气温和、充满鼓励，将具体方法论与用户的演讲内容（关于 ${topic}）结合。
-       - 生成 3 条"普通听众 (LISTENER)"评论：侧重情感共鸣，分享听后的感受。
+    1. Comments:
+       - Generate 2-5 "Coach" comments: Gentle tone, encouraging, combining specific methodologies with the user's speech content (about ${topic}).
+       - Generate 3 "Listener" comments: Focus on emotional resonance, sharing feelings after listening.
 
-    2. 灵魂金句 (goldenSentences)：
-       请从用户的演讲中提取 3 条【绝对差异化】的金句：
-       - 第一条：侧重逻辑洞察或哲学深度。
-       - 第二条：侧重情感共鸣或优美意境。
-       - 第三条：侧重有力结论或行动号召。
+    2. Golden Sentences:
+       Please extract 3 [absolutely differentiated] golden sentences from the user's speech:
+       - First: Focus on logical insight or philosophical depth.
+       - Second: Focus on emotional resonance or beautiful imagery.
+       - Third: Focus on powerful conclusion or call to action.
+       
+    3. Diagnosis:
+       Analyze the speech from 3-5 dimensions (e.g., Logic, Emotion, Delivery, Vocabulary).
+       - issue: The dimension name.
+       - score: 0-100 score.
+       - detail: A brief explanation of the diagnosis.
 
-    JSON 结构要求：
-    - comments: 数组。
-    - goldenSentences: 包含 3 个字符串的数组。
+    4. Improvements:
+       Provide 2-3 specific directions for improvement.
+       - id: unique id.
+       - title: A short title for the direction.
+       - instruction: Detailed instruction on how to improve.
+
+    JSON Structure Requirements:
+    - comments: Array.
+    - goldenSentences: Array of 3 strings.
+    - diagnosis: Array of objects.
+    - improvements: Array of objects.
   `;
 
   const response = await ai.models.generateContent({
-    model: "gemini-3-flash-preview",
+    model: "gemini-2.0-flash-exp",
     contents: {
       parts: [
         { inlineData: { data: audioBase64, mimeType: 'audio/webm' } },
@@ -60,9 +74,33 @@ export async function getSpeechFeedback(audioBase64: string, topic: string): Pro
             items: { type: Type.STRING },
             minItems: 3,
             maxItems: 3
+          },
+          diagnosis: {
+            type: Type.ARRAY,
+            items: {
+              type: Type.OBJECT,
+              properties: {
+                issue: { type: Type.STRING },
+                score: { type: Type.NUMBER },
+                detail: { type: Type.STRING }
+              },
+              required: ["issue", "score", "detail"]
+            }
+          },
+          improvements: {
+            type: Type.ARRAY,
+            items: {
+              type: Type.OBJECT,
+              properties: {
+                id: { type: Type.STRING },
+                title: { type: Type.STRING },
+                instruction: { type: Type.STRING }
+              },
+              required: ["id", "title", "instruction"]
+            }
           }
         },
-        required: ["comments", "goldenSentences"]
+        required: ["comments", "goldenSentences", "diagnosis", "improvements"]
       }
     }
   });
@@ -74,7 +112,7 @@ export async function generatePosterImage(sentence: string, topic: string): Prom
   const prompt = `A cinematic, atmospheric photography piece for the background of a quote card. Theme: "${topic}". Style: Minimalist, soft natural light, high quality, artistic. No text in the image. 3:4 aspect ratio.`;
 
   const response = await ai.models.generateContent({
-    model: 'gemini-2.5-flash-image',
+    model: 'gemini-2.0-flash-exp',
     contents: { parts: [{ text: prompt }] },
     config: { imageConfig: { aspectRatio: "3:4" } }
   });

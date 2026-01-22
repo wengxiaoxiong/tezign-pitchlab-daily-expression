@@ -26,14 +26,23 @@ export default function App() {
     setState(AppState.ANALYZING);
     const demoFeedback: Feedback = {
       goldenSentences: [
-        "在这个充满算法的时代，我们的独特性恰恰在于那些'无用的自由时刻'。",
-        "技术让世界变小了，却让心与心的距离在无限的连接中变得稀薄。",
-        "唯有慢下来的自由，才是灵魂在效率至上时代的最后避难所。"
+        "In this age of algorithms, our uniqueness lies precisely in those 'useless moments of freedom'.",
+        "Technology has made the world smaller, yet it has thinned the distance between hearts in infinite connections.",
+        "Only the freedom to slow down is the soul's last refuge in an efficiency-first era."
       ],
       comments: [
-        { id: 'c1', authorName: "小柔教练", authorTitle: "共情表达力导师", authorType: AuthorType.COACH, avatar: "🌸", likes: 42, content: "你的讲述中关于'老钟表'的比喻非常打动人！这种具体的意象能瞬间拉近听众的距离。" },
-        { id: 'c2', authorName: "老钟", authorTitle: "独立书店主理人", authorType: AuthorType.LISTENER, avatar: "☕️", likes: 28, content: "听完你的这段话，我突然想起了书店里那些不为买书只为发呆的人。" },
-        { id: 'c3', authorName: "阿北", authorTitle: "逻辑推演官", authorType: AuthorType.COACH, avatar: "🔭", likes: 15, content: "整体逻辑骨架非常清晰，分三个点论述人工智能的影响很到位。" }
+        { id: 'c1', authorName: "Coach Rose", authorTitle: "Empathy Coach", authorType: AuthorType.COACH, avatar: "🌸", likes: 42, content: "Your metaphor about the 'old clock' was very moving! Specific imagery instantly bridges the gap with the audience." },
+        { id: 'c2', authorName: "Old Ben", authorTitle: "Bookstore Owner", authorType: AuthorType.LISTENER, avatar: "☕️", likes: 28, content: "Listening to your words, I suddenly remembered those people in the bookstore who don't buy books but just daydream." },
+        { id: 'c3', authorName: "Alex", authorTitle: "Logic Master", authorType: AuthorType.COACH, avatar: "🔭", likes: 15, content: "The overall logical skeleton is very clear, discussing the impact of AI in three points is very much on point." }
+      ],
+      diagnosis: [
+        { issue: "Logic", score: 85, detail: "Strong logical flow with clear arguments." },
+        { issue: "Emotion", score: 92, detail: "Excellent emotional connection with the audience." },
+        { issue: "Vocabulary", score: 78, detail: "Good use of words, but could be more varied." }
+      ],
+      improvements: [
+        { id: 'i1', title: "Enhance Vocal Variety", instruction: "Try to vary your pitch and pace to keep the audience engaged." },
+        { id: 'i2', title: "Use More Pauses", instruction: "Pausing after key points can help the audience digest the information." }
       ]
     };
 
@@ -41,7 +50,7 @@ export default function App() {
       setResultData({
         feedback: demoFeedback,
         posterUrl: "https://images.unsplash.com/photo-1499750310107-5fef28a66643?q=80&w=1000&auto=format&fit=crop",
-        userName: "陈先生",
+        userName: "Demo User",
         userAvatar: "👤",
         checkInDays: 15,
         date: "2024.12.26",
@@ -59,16 +68,16 @@ export default function App() {
       setResultData({
         feedback: fb,
         posterUrl: poster,
-        userName: "表达实践者",
+        userName: "Practitioner",
         userAvatar: "🎙️",
         checkInDays: Math.floor(Math.random() * 30) + 1,
-        date: new Date().toLocaleDateString('zh-CN', { year: 'numeric', month: '2-digit', day: '2-digit' }).replace(/\//g, '.'),
+        date: new Date().toLocaleDateString('en-US', { year: 'numeric', month: '2-digit', day: '2-digit' }).replace(/\//g, '.'),
         topicTitle: currentTopic.title
       });
       setState(AppState.RESULT);
     } catch (err) {
       console.error(err);
-      alert("分析失败，正在返回首页");
+      alert("Analysis failed, returning to home page");
       setState(AppState.HOME);
     }
   };

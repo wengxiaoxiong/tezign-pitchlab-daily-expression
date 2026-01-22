@@ -3,13 +3,13 @@
 import React, { useState, useEffect } from 'react';
 
 const LOADING_STEPS = [
-  { icon: '🎙️', title: '正在转译', detail: '将您的观点转化为文字档案...' },
-  { icon: '🧠', title: '逻辑评审', detail: '教练 [阿北] 正在拆解您的表达结构...' },
-  { icon: '❤️', title: '情感感悟', detail: '教练 [小柔] 正在分析内容的情感张力...' },
-  { icon: '👥', title: '听众席', detail: '听众已入场，正在撰写听后感...' },
-  { icon: '✨', title: '灵魂提炼', detail: '正在为您甄选 3 条具有差异化的"金句"...' },
-  { icon: '🎨', title: '意境创作', detail: '艺术家正在根据您的观点绘制背景...' },
-  { icon: '💌', title: '最后装订', detail: '正在装订您的每日表达复盘报告...' },
+  { icon: '🎙️', title: 'Transcribing', detail: 'Converting your views into text...' },
+  { icon: '🧠', title: 'Logic Review', detail: 'Coach [Alex] is breaking down your structure...' },
+  { icon: '❤️', title: 'Emotional Insight', detail: 'Coach [Rose] is analyzing emotional tension...' },
+  { icon: '👥', title: 'Audience Seat', detail: 'The audience is entering and writing reviews...' },
+  { icon: '✨', title: 'Soul Extraction', detail: 'Selecting 3 "Golden Sentences" for you...' },
+  { icon: '🎨', title: 'Art Creation', detail: 'Artist is drawing a background based on your views...' },
+  { icon: '💌', title: 'Final Binding', detail: 'Binding your daily expression review report...' },
 ];
 
 export const AnalyzingView: React.FC = () => {
@@ -60,7 +60,7 @@ export const AnalyzingView: React.FC = () => {
               className={`flex items-center gap-4 transition-all duration-700 ${idx === step ? 'opacity-100 translate-y-0 scale-100' : idx < step ? 'opacity-20 -translate-y-2 scale-95' : 'opacity-0 translate-y-4 scale-90'}`}
             >
               <span className="text-sm grayscale">{s.icon}</span>
-              <span className="text-[10px] font-bold text-gray-800 tracking-widest">{s.title} 完成</span>
+              <span className="text-[10px] font-bold text-gray-800 tracking-widest">{s.title} Done</span>
             </div>
           ))}
         </div>

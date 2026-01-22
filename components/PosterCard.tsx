@@ -44,7 +44,7 @@ export const PosterCard: React.FC<PosterCardProps> = ({ data, styleId }) => {
             </div>
             <div className="mt-auto flex justify-between items-center border-t border-gray-50 pt-6">
               <div className="flex flex-col gap-1">
-                <p className="text-[9px] font-bold text-gray-800">3分钟观点表达</p>
+                <p className="text-[9px] font-bold text-gray-800">3-Min Pitch</p>
                 <p className="text-[8px] text-gray-400 font-mono">PitchLab.pro</p>
               </div>
               <QRCode size={34} />
@@ -65,7 +65,7 @@ export const PosterCard: React.FC<PosterCardProps> = ({ data, styleId }) => {
             <div className="mt-auto flex justify-between items-end pt-10 border-t border-white/5">
               <UserInfo data={data} dark compact />
               <div className="text-right">
-                <p className="text-[7px] text-white/40 mb-1 uppercase tracking-tighter font-serif">3分钟观点表达</p>
+                <p className="text-[7px] text-white/40 mb-1 uppercase tracking-tighter font-serif">3-Min Pitch</p>
                 <span className="text-[8px] text-white/20 font-mono">PitchLab.pro</span>
               </div>
             </div>

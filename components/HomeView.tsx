@@ -9,9 +9,9 @@ interface HomeViewProps {
 }
 
 export const HomeView: React.FC<HomeViewProps> = ({ onStart }) => {
-  const [activeTab, setActiveTab] = useState('全部');
+  const [activeTab, setActiveTab] = useState('All');
 
-  const filteredTopics = activeTab === '全部'
+  const filteredTopics = activeTab === 'All'
     ? ALL_TOPICS
     : ALL_TOPICS.filter(t => t.tag === activeTab);
 
@@ -23,11 +23,11 @@ export const HomeView: React.FC<HomeViewProps> = ({ onStart }) => {
           className="bg-[#1C1C1E] text-white p-6 rounded-[1.5rem] shadow-xl relative overflow-hidden group cursor-pointer active:scale-[0.98] transition-all"
         >
           <div className="relative z-10">
-            <span className="text-[10px] font-bold uppercase tracking-[0.2em] opacity-40">今日话题</span>
+            <span className="text-[10px] font-bold uppercase tracking-[0.2em] opacity-40">Today&apos;s Topic</span>
             <h2 className="text-xl font-serif mt-3 mb-8 leading-snug">{TODAY_TOPIC.title}</h2>
             <div className="flex justify-between items-center">
-              <span className="text-[10px] opacity-40">{TODAY_TOPIC.practiceCount.toLocaleString()} 位表达者</span>
-              <span className="font-bold text-xs bg-white text-black px-4 py-2 rounded-full">表达我的观点</span>
+              <span className="text-[10px] opacity-40">{TODAY_TOPIC.practiceCount.toLocaleString()} Speakers</span>
+              <span className="font-bold text-xs bg-white text-black px-4 py-2 rounded-full">Express My View</span>
             </div>
           </div>
           <div className="absolute top-0 right-0 w-32 h-32 bg-white/5 blur-3xl rounded-full translate-x-10 -translate-y-10" />
@@ -36,7 +36,7 @@ export const HomeView: React.FC<HomeViewProps> = ({ onStart }) => {
 
       <section className="space-y-4">
         <div className="px-6 flex justify-between items-end">
-          <h3 className="text-sm font-bold uppercase tracking-widest text-gray-400">精选题库</h3>
+          <h3 className="text-sm font-bold uppercase tracking-widest text-gray-400">Curated Topics</h3>
         </div>
         <div className="flex px-6 gap-2 overflow-x-auto hide-scrollbar">
           {CATEGORIES.map(cat => (

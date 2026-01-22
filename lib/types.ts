@@ -31,9 +31,23 @@ export interface CommentFeedback {
   likes: number;
 }
 
+export interface Diagnosis {
+  issue: string;
+  score: number; // 0-100
+  detail: string;
+}
+
+export interface Improvement {
+  id: string;
+  title: string;
+  instruction: string;
+}
+
 export interface Feedback {
   comments: CommentFeedback[];
   goldenSentences: string[];
+  diagnosis: Diagnosis[];
+  improvements: Improvement[];
 }
 
 export interface ResultData {
