@@ -19,6 +19,38 @@ export const TODAY_TOPIC: Topic = {
 
 export const ALL_TOPICS: Topic[] = [
   {
+    id: 's4',
+    title: 'Quickly introduce the product',
+    date: 'Today',
+    practiceCount: 0,
+    tag: 'Software Sales',
+    subQuestions: ["Core value proposition", "Target audience pain points", "Key differentiators"]
+  },
+  {
+    id: 's1',
+    title: 'How to handle a customer saying "Your price is too high"?',
+    date: '10-20',
+    practiceCount: 302,
+    tag: 'Software Sales',
+    subQuestions: ["Value based selling", "ROI calculation", "Competitive landscape"]
+  },
+  {
+    id: 's2',
+    title: 'Explain a complex technical concept to a non-technical stakeholder.',
+    date: '10-19',
+    practiceCount: 215,
+    tag: 'Software Sales',
+    subQuestions: ["Use analogies", "Focus on business outcomes", "Avoid jargon"]
+  },
+  {
+    id: 's3',
+    title: 'How to recover from a bad demo?',
+    date: '10-18',
+    practiceCount: 189,
+    tag: 'Software Sales',
+    subQuestions: ["Acknowledge and pivot", "Focus on what works", "Follow up with a recording"]
+  },
+  {
     id: 'f1',
     title: 'How would you describe the Internet to a child who has never seen it?',
     date: '10-25',
@@ -57,30 +89,6 @@ export const ALL_TOPICS: Topic[] = [
     practiceCount: 450,
     tag: 'Career',
     subQuestions: ["Building long-term trust", "Ability to solve sudden problems", "Foundation of teamwork"]
-  },
-  {
-    id: 's1',
-    title: 'How to handle a customer saying "Your price is too high"?',
-    date: '10-20',
-    practiceCount: 302,
-    tag: 'Software Sales',
-    subQuestions: ["Value based selling", "ROI calculation", "Competitive landscape"]
-  },
-  {
-    id: 's2',
-    title: 'Explain a complex technical concept to a non-technical stakeholder.',
-    date: '10-19',
-    practiceCount: 215,
-    tag: 'Software Sales',
-    subQuestions: ["Use analogies", "Focus on business outcomes", "Avoid jargon"]
-  },
-  {
-    id: 's3',
-    title: 'How to recover from a bad demo?',
-    date: '10-18',
-    practiceCount: 189,
-    tag: 'Software Sales',
-    subQuestions: ["Acknowledge and pivot", "Focus on what works", "Follow up with a recording"]
   }
 ];
 
