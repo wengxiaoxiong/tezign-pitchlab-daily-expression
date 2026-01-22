@@ -100,7 +100,6 @@ export default function App() {
           data={resultData}
           onBack={() => setState(AppState.HOME)}
           isLoggedIn={isLoggedIn}
-          setIsLoggedIn={setIsLoggedIn}
         />
       )}
     </div>

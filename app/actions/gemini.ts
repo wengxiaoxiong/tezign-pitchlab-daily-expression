@@ -14,8 +14,8 @@ export async function getSpeechFeedback(audioBase64: string, topic: string): Pro
     Please generate feedback based on the user's speech recording, including 5 social media-style comments, comprehensive diagnosis, and improvement directions.
 
     1. Comments:
-       - Generate 2-5 "Coach" comments: Gentle tone, encouraging, combining specific methodologies with the user's speech content (about ${topic}).
-       - Generate 3 "Listener" comments: Focus on emotional resonance, sharing feelings after listening.
+       - Generate 2-5 "Coach" comments: Professional and insightful tone. Use communication frameworks like PREP (Point, Reason, Example, Point) or STAR where appropriate. Each coach should have a distinct specialty (e.g., Logic, Emotion, Body Language) in the context of the topic: "${topic}".
+       - Generate 3 "Listener" comments: Focus on emotional resonance and personal impact.
 
     2. Golden Sentences:
        Please extract 3 [absolutely differentiated] golden sentences from the user's speech:

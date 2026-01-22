@@ -9,11 +9,10 @@ interface ResultViewProps {
   data: ResultData;
   onBack: () => void;
   isLoggedIn: boolean;
-  setIsLoggedIn: (v: boolean) => void;
 }
 
-export const ResultView: React.FC<ResultViewProps> = ({ data, onBack, isLoggedIn, setIsLoggedIn }) => {
-  const [filter, setFilter] = useState<AuthorType>(AuthorType.LISTENER);
+export const ResultView: React.FC<ResultViewProps> = ({ data, onBack, isLoggedIn }) => {
+  const [filter, setFilter] = useState<AuthorType>(AuthorType.COACH);
   const [likedIds, setLikedIds] = useState<Set<string>>(new Set());
   const scrollRef = useRef<HTMLDivElement>(null);
 
@@ -48,18 +47,13 @@ export const ResultView: React.FC<ResultViewProps> = ({ data, onBack, isLoggedIn
     }
   };
 
-  const isCoachFilter = filter === AuthorType.COACH;
-  const showCoachBlur = !isLoggedIn && isCoachFilter;
-
   return (
     <div className="min-h-screen bg-white animate-in fade-in duration-1000 flex flex-col">
       <div className="px-6 py-6 flex justify-between items-center bg-white sticky top-0 z-30 border-b border-gray-50/50">
-        <button
-          onClick={() => setIsLoggedIn(!isLoggedIn)}
-          className={`text-[10px] font-bold px-2.5 py-1 rounded-full border transition-colors ${isLoggedIn ? 'bg-green-50 text-green-600 border-green-200' : 'bg-gray-50 text-gray-400 border-gray-100'}`}
-        >
-          {isLoggedIn ? 'Logged In' : 'Guest'}
-        </button>
+        <div className="flex items-center gap-2">
+          <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
+          <span className="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Live Analysis</span>
+        </div>
 
         <div className="flex items-center gap-6">
           <button
@@ -89,7 +83,7 @@ export const ResultView: React.FC<ResultViewProps> = ({ data, onBack, isLoggedIn
           className="flex gap-6 overflow-x-auto snap-x snap-mandatory hide-scrollbar w-full px-[calc(50%-155px)] pb-4"
         >
           {selectedStyles.map((sid) => (
-            <div key={sid} className="snap-center flex-shrink-0">
+            <div key={sid} className="snap-center shrink-0">
               <PosterCard data={data} styleId={sid} />
             </div>
           ))}
@@ -131,7 +125,7 @@ export const ResultView: React.FC<ResultViewProps> = ({ data, onBack, isLoggedIn
               <div
                 key={imp.id}
                 onClick={onBack}
-                className="group bg-gradient-to-br from-gray-50 to-white p-5 rounded-2xl border border-gray-100 hover:border-black/10 hover:shadow-md transition-all cursor-pointer active:scale-[0.98]"
+                className="group bg-linear-to-br from-gray-50 to-white p-5 rounded-2xl border border-gray-100 hover:border-black/10 hover:shadow-md transition-all cursor-pointer active:scale-[0.98]"
               >
                 <div className="flex justify-between items-start mb-2">
                   <h4 className="font-bold text-gray-800 group-hover:text-black transition-colors">{imp.title}</h4>
@@ -152,8 +146,8 @@ export const ResultView: React.FC<ResultViewProps> = ({ data, onBack, isLoggedIn
           </div>
           <div className="flex gap-2">
             {[
-              { id: AuthorType.LISTENER, label: 'Audience' },
-              { id: AuthorType.COACH, label: 'Coaches' }
+              { id: AuthorType.COACH, label: 'Coach Analysis' },
+              { id: AuthorType.LISTENER, label: 'Listener Vibes' }
             ].map(f => (
               <button
                 key={f.id}
@@ -167,17 +161,17 @@ export const ResultView: React.FC<ResultViewProps> = ({ data, onBack, isLoggedIn
         </div>
 
         <div className="relative min-h-[200px]">
-          <div className={`space-y-10 pb-24 transition-all duration-500 ${showCoachBlur ? 'blur-md pointer-events-none select-none opacity-40' : ''}`}>
+          <div className="space-y-10 pb-24 transition-all duration-500">
             {filteredComments.map((comment) => (
               <div key={comment.id} className="group animate-in slide-in-from-bottom-2 duration-500 relative">
                 <div className="flex gap-4">
-                  <div className="w-10 h-10 rounded-full bg-gray-50 flex items-center justify-center text-xl shadow-sm flex-shrink-0 border border-gray-100">{comment.avatar}</div>
+                  <div className="w-10 h-10 rounded-full bg-gray-50 flex items-center justify-center text-xl shadow-sm shrink-0 border border-gray-100">{comment.avatar}</div>
                   <div className="flex-1 space-y-2">
                     <div className="flex justify-between items-start">
                       <div>
                         <div className="flex items-center gap-2">
                           <span className="text-sm font-bold text-gray-800">{comment.authorName}</span>
-                          {comment.authorType === AuthorType.COACH && <span className="text-[9px] bg-blue-50 text-blue-500 px-1.5 py-0.5 rounded font-bold uppercase tracking-tighter">Pro</span>}
+                          {comment.authorType === AuthorType.COACH && <span className="text-[9px] bg-blue-50 text-blue-500 px-1.5 py-0.5 rounded font-bold uppercase tracking-tighter">Coach</span>}
                         </div>
                         <p className="text-[10px] text-gray-400">{comment.authorTitle}</p>
                       </div>
@@ -194,22 +188,6 @@ export const ResultView: React.FC<ResultViewProps> = ({ data, onBack, isLoggedIn
               </div>
             ))}
           </div>
-
-          {showCoachBlur && (
-            <div className="absolute inset-0 flex flex-col items-center justify-center z-10">
-              <div className="bg-white/90 p-6 rounded-3xl shadow-xl border border-gray-100 flex flex-col items-center gap-3 animate-in fade-in zoom-in duration-300">
-                <div className="w-12 h-12 bg-gray-50 rounded-full flex items-center justify-center text-gray-400 shadow-inner">
-                  <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
-                  </svg>
-                </div>
-                <div className="text-center">
-                  <p className="text-sm font-bold text-gray-800">Unlock Professional Coach Comments</p>
-                  <p className="text-[10px] text-gray-400 mt-1 tracking-widest uppercase">Login to see multi-dimensional analysis</p>
-                </div>
-              </div>
-            </div>
-          )}
         </div>
       </div>
 
@@ -223,7 +201,7 @@ export const ResultView: React.FC<ResultViewProps> = ({ data, onBack, isLoggedIn
         <button
           className="text-[13px] font-bold text-black tracking-widest uppercase active:opacity-60 transition-opacity"
         >
-          {isLoggedIn ? 'History' : 'Login to Record'}
+          {isLoggedIn ? 'History' : 'Sign in to Save'}
         </button>
       </div>
     </div>
